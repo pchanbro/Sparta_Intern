@@ -3,8 +3,8 @@ using UnityEngine;
 
 public class DataBase
 {
-    public Dictionary<int, ItemData> ItemDB;
-    public Dictionary<string, MonsterData> MonsterDB;
+    public Dictionary<int, ItemData> ItemDB = new Dictionary<int, ItemData>();
+    public Dictionary<string, MonsterData> MonsterDB = new Dictionary<string, MonsterData>();
 
     public void SetData()
     {

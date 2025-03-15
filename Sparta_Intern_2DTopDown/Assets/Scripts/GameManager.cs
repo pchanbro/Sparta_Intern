@@ -18,7 +18,7 @@ public class GameManager : MonoBehaviour
 
     public Player player;
 
-    public DataBase dataBase;
+    public DataBase dataBase = new DataBase();
 
     void Awake()
     {
@@ -29,7 +29,7 @@ public class GameManager : MonoBehaviour
         }
         else
         {
-            if(instance == this)
+            if(instance != this)
             {
                 Destroy(gameObject);
             }

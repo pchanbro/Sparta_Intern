@@ -5,7 +5,7 @@ public class Player : MonoBehaviour
 {
     PlayerStat stat;
 
-    void Awake()
+    void Start()
     {
         GameManager.Instance.player = this;
     }

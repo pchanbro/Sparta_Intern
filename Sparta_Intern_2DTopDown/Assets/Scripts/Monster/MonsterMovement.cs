@@ -1,15 +1,19 @@
 
+using Unity.VisualScripting;
 using UnityEngine;
 
 public class MonsterMovement : MonoBehaviour
 {
     Vector2 moveDir;
-    public float speed;
+    public int attackRange;
+    public float attackSpeed;
+    public float moveSpeed;
     SpriteRenderer monsterSprite;
+    bool attack = false;
 
     private void Awake()
     {
-        
+        monsterSprite = GetComponent<SpriteRenderer>();
     }
 
     void Update()
@@ -23,20 +27,38 @@ public class MonsterMovement : MonoBehaviour
         {
             monsterSprite.flipX = false;
         }
+        IsInRange();
     }
 
     private void FixedUpdate()
     {
-        transform.position += (new Vector3(moveDir.x, moveDir.y)).normalized * Time.fixedDeltaTime * speed;
+        if (!attack)
+        {
+            transform.position += (new Vector3(moveDir.x, moveDir.y)).normalized * Time.fixedDeltaTime * moveSpeed;
+        }
     }
 
-    public void SetSpeed(float speed)
+    public void SetMoveStat(MonsterStat stat)
     {
-        this.speed = speed;
+        attackRange = stat.AttackRange;
+        attackSpeed = stat.AttackSpeed;
+        moveSpeed = stat.MoveSpeed;
     }
 
     private void SetDir()
     {
-        moveDir = (GameManager.Instance.player.transform.position - this.transform.position).normalized;
+        moveDir = GameManager.Instance.player.transform.position - this.transform.position;
+    }
+
+    public void IsInRange()
+    {
+        if (moveDir.magnitude <= attackRange)
+        {
+            attack = true;
+        }
+        else
+        {
+            attack = false;
+        }
     }
 }
