@@ -1,12 +1,11 @@
-using System;
-using System.Collections;
-using System.Collections.Generic;
+
 using UnityEngine;
 
 public class MonsterMovement : MonoBehaviour
 {
     Vector2 moveDir;
     public float speed;
+    SpriteRenderer monsterSprite;
 
     private void Awake()
     {
@@ -16,6 +15,14 @@ public class MonsterMovement : MonoBehaviour
     void Update()
     {
         SetDir();
+        if (moveDir.x < 0)
+        {
+            monsterSprite.flipX = true;
+        }
+        else if (moveDir.x > 0)
+        {
+            monsterSprite.flipX = false;
+        }
     }
 
     private void FixedUpdate()
@@ -23,13 +30,13 @@ public class MonsterMovement : MonoBehaviour
         transform.position += (new Vector3(moveDir.x, moveDir.y)).normalized * Time.fixedDeltaTime * speed;
     }
 
-    private void SetSpeed(float speed)
+    public void SetSpeed(float speed)
     {
         this.speed = speed;
     }
 
     private void SetDir()
     {
-        moveDir = (GameManager.Instance.Player.transform.position - this.transform.position).normalized;
+        moveDir = (GameManager.Instance.player.transform.position - this.transform.position).normalized;
     }
 }

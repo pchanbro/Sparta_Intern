@@ -1,5 +1,4 @@
-using System.Collections;
-using System.Collections.Generic;
+
 using UnityEngine;
 
 public class GameManager : MonoBehaviour
@@ -17,13 +16,9 @@ public class GameManager : MonoBehaviour
         }
     }
 
-    private Player player;
+    public Player player;
 
-    public Player Player
-    {
-        get { return player; }
-        set { player = value; }
-    }
+    public DataBase dataBase;
 
     void Awake()
     {
@@ -38,7 +33,8 @@ public class GameManager : MonoBehaviour
             {
                 Destroy(gameObject);
             }
+        }
 
-        }    
+        dataBase.SetData();
     }
 }

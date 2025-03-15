@@ -1,5 +1,4 @@
-using System.Collections;
-using System.Collections.Generic;
+
 using UnityEngine;
 
 public class Player : MonoBehaviour
@@ -8,7 +7,7 @@ public class Player : MonoBehaviour
 
     void Awake()
     {
-        GameManager.Instance.Player = this;
+        GameManager.Instance.player = this;
     }
 
     void Update()
