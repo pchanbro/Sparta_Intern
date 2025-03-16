@@ -4,14 +4,13 @@ using UnityEngine;
 public class Player : MonoBehaviour
 {
     PlayerStat stat;
+    public PlayerController controller { get; private set; }
 
-    void Start()
+    void Awake()
     {
         GameManager.Instance.player = this;
+        controller = gameObject.GetComponent<PlayerController>();
     }
 
-    void Update()
-    {
-        
-    }
+    
 }

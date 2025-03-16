@@ -18,7 +18,9 @@ public class GameManager : MonoBehaviour
 
     public Player player;
 
-    public DataBase dataBase = new DataBase();
+    public DataBase dataBase;
+
+    public ObjectPool pool;
 
     void Awake()
     {
@@ -35,6 +37,13 @@ public class GameManager : MonoBehaviour
             }
         }
 
+        dataBase = new DataBase();
         dataBase.SetData();
+
+        GameObject poolObject = Resources.Load<GameObject>("Prefabs/UtilObj/MonsterPool");
+        Instantiate(poolObject);
+
+        GameObject spawnerObject = Resources.Load<GameObject>("Prefabs/UtilObj/Spawner");
+        Instantiate(spawnerObject);
     }
 }

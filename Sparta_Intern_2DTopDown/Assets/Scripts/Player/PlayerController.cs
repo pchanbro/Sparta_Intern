@@ -7,6 +7,7 @@ public class PlayerController : MonoBehaviour
     [SerializeField] Vector2 moveDir;
     public float speed;
     SpriteRenderer playerSprite;
+    public bool move = false;
 
     void Awake()
     {
@@ -22,6 +23,15 @@ public class PlayerController : MonoBehaviour
         else if(moveDir.x > 0)
         {
             playerSprite.flipX = false;
+        }
+
+        if(moveDir.magnitude > 0.1f)
+        {
+            move = true;
+        }
+        else
+        {
+            move = false;
         }
     }
 
